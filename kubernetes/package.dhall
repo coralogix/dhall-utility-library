@@ -14,4 +14,5 @@
 , Compute = ./Compute.dhall
 , Space = ./Space.dhall
 , Memory = ./Memory.dhall
+, VPASettings = ./VPASettings.dhall
 }
