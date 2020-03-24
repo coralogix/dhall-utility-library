@@ -1,5 +1,5 @@
 { name = "dhall-utility-library"
-, version = "0.3.0"
+, version = "0.4.0"
 , description = "Utility functions for Dhall"
 , repository =
     { type = "git"
