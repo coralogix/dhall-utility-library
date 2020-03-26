@@ -3,4 +3,5 @@
 , kubernetes = ./kubernetes/package.dhall
 , log = ./log/package.dhall
 , map = ./map/package.dhall
+, jvm = ./jvm/package.dhall
 }
