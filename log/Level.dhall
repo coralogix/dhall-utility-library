@@ -13,7 +13,7 @@ let render =
                 , None = "none"
                 }
                 value
-      
+
       let tests =
             { all = assert : render Level.All ≡ "all"
             , debug = assert : render Level.Debug ≡ "debug"
@@ -22,7 +22,7 @@ let render =
             , error = assert : render Level.Error ≡ "error"
             , none = assert : render Level.None ≡ "none"
             }
-      
+
       in  render
 
 let exports =
