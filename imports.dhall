@@ -1,3 +1,3 @@
 { Prelude =
-    https://raw.githubusercontent.com/dhall-lang/dhall-lang/v14.0.0/Prelude/package.dhall sha256:c1b3fc613aabfb64a9e17f6c0d70fe82016a030beedd79851730993e9083fde2
+    https://raw.githubusercontent.com/dhall-lang/dhall-lang/v15.0.0/Prelude/package.dhall sha256:6b90326dc39ab738d7ed87b970ba675c496bed0194071b332840a87261649dcd
 }

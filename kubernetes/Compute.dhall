@@ -9,12 +9,12 @@ let render =
                 , Cpu = λ(it : Natural) → "${Natural/show it}"
                 }
                 value
-      
+
       let tests =
             { millicpu = assert : render (Compute.Millicpu 1000) ≡ "1000m"
             , cpu = assert : render (Compute.Cpu 1) ≡ "1"
             }
-      
+
       in  render
 
 let exports =

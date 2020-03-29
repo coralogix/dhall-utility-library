@@ -10,13 +10,13 @@ let render =
                 , Hours = λ(it : Natural) → "${Natural/show it}h"
                 }
                 value
-      
+
       let tests =
             { seconds = assert : render (Duration.Seconds 30) ≡ "30s"
             , minutes = assert : render (Duration.Minutes 60) ≡ "60m"
             , hours = assert : render (Duration.Hours 24) ≡ "24h"
             }
-      
+
       in  render
 
 let exports =
