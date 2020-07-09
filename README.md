@@ -12,7 +12,7 @@ This allows the user to more easily generate type-safe configuration, through th
 ## Install
 For stability, users are encouraged to import from a tagged release, not from the master branch, and to watch for new releases. This project does not yet have rigorous testing set up for it and new commits on the master branch are prone to break compatiblility and are almost sure to change the import hash for the expression, thus the releases are currently `v0.x`.
 ```
-https://raw.githubusercontent.com/coralogix/dhall-utility-library/v0.5.0/package.dhall sha256:4cd1d3b99bacce564563aeec827b9cb988496795d82431716a913ff31d049128
+https://raw.githubusercontent.com/coralogix/dhall-utility-library/v0.6.0/package.dhall sha256:66eac38d50e5c59df947ee682d9554454e2276aa06263a730c89d6297294f7bf
 ```
 ## Maintainers
 [Ari Becker](https://github.com/ari-becker)

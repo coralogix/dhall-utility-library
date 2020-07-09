@@ -1,21 +1,30 @@
-let Heap = < TB : Natural | GB : Natural | MB : Natural | KB : Natural >
+let Heap =
+      let Unit = < TB | GB | MB | KB >
+
+      in  { Type = { magnitude : Natural, unit : Unit }
+          , Unit
+          , TB = λ(magnitude : Natural) → { magnitude, unit = Unit.TB }
+          , GB = λ(magnitude : Natural) → { magnitude, unit = Unit.GB }
+          , MB = λ(magnitude : Natural) → { magnitude, unit = Unit.MB }
+          , KB = λ(magnitude : Natural) → { magnitude, unit = Unit.KB }
+          }
 
 let render =
       let size =
-              λ(heap : Heap)
-            → merge
-                { TB = λ(size : Natural) → "${Natural/show size}t"
-                , GB = λ(size : Natural) → "${Natural/show size}g"
-                , MB = λ(size : Natural) → "${Natural/show size}m"
-                , KB = λ(size : Natural) → "${Natural/show size}k"
+            λ(heap : Heap.Type) →
+              merge
+                { TB = "${Natural/show heap.magnitude}t"
+                , GB = "${Natural/show heap.magnitude}g"
+                , MB = "${Natural/show heap.magnitude}m"
+                , KB = "${Natural/show heap.magnitude}k"
                 }
-                heap
+                heap.unit
 
-      let xms = λ(value : Heap) → "-Xms${size value}"
+      let xms = λ(value : Heap.Type) → "-Xms${size value}"
 
-      let xmx = λ(value : Heap) → "-Xmx${size value}"
+      let xmx = λ(value : Heap.Type) → "-Xmx${size value}"
 
-      let fixed = λ(heap : Heap) → "${xms heap} ${xmx heap}"
+      let fixed = λ(heap : Heap.Type) → "${xms heap} ${xmx heap}"
 
       let tests =
             { size = assert : size (Heap.KB 512) ≡ "512k"
@@ -24,23 +33,8 @@ let render =
             , fixed = assert : fixed (Heap.MB 1024) ≡ "-Xms1024m -Xmx1024m"
             }
 
-      in  { text = size, xms = xms, xmx = xmx, fixed = fixed }
+      in  { text = size, xms, xmx, fixed }
 
-let exports =
-    {- the TB, GB, MB, KB exports are provided as helpers.
-    -- instead of needing to write :
-    --      let Heap = ./Heap.dhall
-    --      in Heap.Type.GB 2
-    -- you can instead write
-    --      let Heap = ./Heap.dhall
-    --      in Heap.GB 2
-    -}
-      { Types = Heap
-      , render = render
-      , TB = λ(value : Natural) → Heap.TB value
-      , GB = λ(value : Natural) → Heap.GB value
-      , MB = λ(value : Natural) → Heap.MB value
-      , KB = λ(value : Natural) → Heap.KB value
-      }
+let exports = Heap ∧ { render }
 
 in  exports

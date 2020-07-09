@@ -1,14 +1,22 @@
-let Compute = < Millicpu : Natural | Cpu : Natural >
+let Compute =
+      let Unit = < Millicpu | Cpu >
+
+      in  { Type = { magnitude : Natural, unit : Unit }
+          , Unit
+          , Millicpu =
+              λ(magnitude : Natural) → { magnitude, unit = Unit.Millicpu }
+          , Cpu = λ(magnitude : Natural) → { magnitude, unit = Unit.Cpu }
+          }
 
 let render =
       let render
-          : ∀(value : Compute) → Text
-          =   λ(value : Compute)
-            → merge
-                { Millicpu = λ(it : Natural) → "${Natural/show it}m"
-                , Cpu = λ(it : Natural) → "${Natural/show it}"
+          : ∀(value : Compute.Type) → Text
+          = λ(value : Compute.Type) →
+              merge
+                { Millicpu = "${Natural/show value.magnitude}m"
+                , Cpu = "${Natural/show value.magnitude}"
                 }
-                value
+                value.unit
 
       let tests =
             { millicpu = assert : render (Compute.Millicpu 1000) ≡ "1000m"
@@ -17,19 +25,6 @@ let render =
 
       in  render
 
-let exports =
-    {- the Millicpu, Cpu exports are provided as helpers.
-    -- instead of needing to write:
-      --     let Compute = ./Compute.dhall
-      --     in Compute.Type.Millicpu 1000
-      -- you can instead write:
-      --     let Compute = ./Compute.dhall
-      --     in Compute.Millicpu 1000
-      -}
-      { Type = Compute
-      , Millicpu = λ(value : Natural) → Compute.Millicpu value
-      , Cpu = λ(value : Natural) → Compute.Cpu value
-      , render = render
-      }
+let exports = Compute ∧ { render }
 
 in  exports

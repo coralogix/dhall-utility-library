@@ -1,15 +1,25 @@
-let Duration = < Seconds : Natural | Minutes : Natural | Hours : Natural >
+let Duration =
+      let Unit = < Seconds | Minutes | Hours >
+
+      in  { Type = { unit : Unit, magnitude : Natural }
+          , Unit
+          , Seconds =
+              λ(magnitude : Natural) → { magnitude, unit = Unit.Seconds }
+          , Minutes =
+              λ(magnitude : Natural) → { magnitude, unit = Unit.Minutes }
+          , Hours = λ(magnitude : Natural) → { magnitude, unit = Unit.Hours }
+          }
 
 let render =
       let render
-          : ∀(value : Duration) → Text
-          =   λ(value : Duration)
-            → merge
-                { Seconds = λ(it : Natural) → "${Natural/show it}s"
-                , Minutes = λ(it : Natural) → "${Natural/show it}m"
-                , Hours = λ(it : Natural) → "${Natural/show it}h"
+          : ∀(value : Duration.Type) → Text
+          = λ(value : Duration.Type) →
+              merge
+                { Seconds = "${Natural/show value.magnitude}s"
+                , Minutes = "${Natural/show value.magnitude}m"
+                , Hours = "${Natural/show value.magnitude}h"
                 }
-                value
+                value.unit
 
       let tests =
             { seconds = assert : render (Duration.Seconds 30) ≡ "30s"
@@ -19,20 +29,6 @@ let render =
 
       in  render
 
-let exports =
-    {- the Seconds, Minutes, and Hours exports are provided as helpers.
-    -- instead of needing to write:
-     --     let Duration = ./Duration.dhall
-     --     in Duration.Type.Seconds 30
-     -- you can instead write:
-     --     let Duration = ./Duration.dhall
-     --     in Duration.Seconds 30
-    -}
-      { Type = Duration
-      , Seconds = λ(value : Natural) → Duration.Seconds value
-      , Minutes = λ(value : Natural) → Duration.Minutes value
-      , Hours = λ(value : Natural) → Duration.Hours value
-      , render = render
-      }
+let exports = Duration ∧ { render }
 
 in  exports
