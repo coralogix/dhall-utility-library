@@ -9,21 +9,21 @@ let Options =
             , default = {=}
             }
 
-      in  { Tag = Tag, Sha256 = Sha256 }
+      in  { Tag, Sha256 }
 
 let Image = < Tag : Options.Tag.Type | Sha256 : Options.Sha256.Type >
 
 let render =
       let render
           : ∀(value : Image) → Text
-          =   λ(value : Image)
-            → merge
+          = λ(value : Image) →
+              merge
                 { Tag =
-                      λ(it : Options.Tag.Type)
-                    → "${it.registry}/${it.name}:${it.tag}"
+                    λ(it : Options.Tag.Type) →
+                      "${it.registry}/${it.name}:${it.tag}"
                 , Sha256 =
-                      λ(it : Options.Sha256.Type)
-                    → "${it.registry}/${it.name}@sha256:${it.hash}"
+                    λ(it : Options.Sha256.Type) →
+                      "${it.registry}/${it.name}@sha256:${it.hash}"
                 }
                 value
 
@@ -67,8 +67,8 @@ let exports =
       { Type = Image
       , Tag = λ(value : Options.Tag.Type) → Image.Tag value
       , Sha256 = λ(value : Options.Sha256.Type) → Image.Sha256 value
-      , Options = Options
-      , render = render
+      , Options
+      , render
       }
 
 in  exports

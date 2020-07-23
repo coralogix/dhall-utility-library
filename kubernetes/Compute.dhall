@@ -3,8 +3,8 @@ let Compute = < Millicpu : Natural | Cpu : Natural >
 let render =
       let render
           : ∀(value : Compute) → Text
-          =   λ(value : Compute)
-            → merge
+          = λ(value : Compute) →
+              merge
                 { Millicpu = λ(it : Natural) → "${Natural/show it}m"
                 , Cpu = λ(it : Natural) → "${Natural/show it}"
                 }
@@ -29,7 +29,7 @@ let exports =
       { Type = Compute
       , Millicpu = λ(value : Natural) → Compute.Millicpu value
       , Cpu = λ(value : Natural) → Compute.Cpu value
-      , render = render
+      , render
       }
 
 in  exports

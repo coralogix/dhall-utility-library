@@ -3,8 +3,8 @@ let Level = < All | Debug | Info | Warn | Error | None > : Type
 let render =
       let render
           : ∀(value : Level) → Text
-          =   λ(value : Level)
-            → merge
+          = λ(value : Level) →
+              merge
                 { All = "all"
                 , Debug = "debug"
                 , Info = "info"
@@ -41,7 +41,7 @@ let exports =
       , Warn = Level.Warn
       , Error = Level.Error
       , None = Level.None
-      , render = render
+      , render
       }
 
 in  exports

@@ -3,8 +3,8 @@ let Duration = < Seconds : Natural | Minutes : Natural | Hours : Natural >
 let render =
       let render
           : ∀(value : Duration) → Text
-          =   λ(value : Duration)
-            → merge
+          = λ(value : Duration) →
+              merge
                 { Seconds = λ(it : Natural) → "${Natural/show it}s"
                 , Minutes = λ(it : Natural) → "${Natural/show it}m"
                 , Hours = λ(it : Natural) → "${Natural/show it}h"
@@ -32,7 +32,7 @@ let exports =
       , Seconds = λ(value : Natural) → Duration.Seconds value
       , Minutes = λ(value : Natural) → Duration.Minutes value
       , Hours = λ(value : Natural) → Duration.Hours value
-      , render = render
+      , render
       }
 
 in  exports

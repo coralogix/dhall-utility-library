@@ -2,8 +2,8 @@ let Heap = < TB : Natural | GB : Natural | MB : Natural | KB : Natural >
 
 let render =
       let size =
-              λ(heap : Heap)
-            → merge
+            λ(heap : Heap) →
+              merge
                 { TB = λ(size : Natural) → "${Natural/show size}t"
                 , GB = λ(size : Natural) → "${Natural/show size}g"
                 , MB = λ(size : Natural) → "${Natural/show size}m"
@@ -24,7 +24,7 @@ let render =
             , fixed = assert : fixed (Heap.MB 1024) ≡ "-Xms1024m -Xmx1024m"
             }
 
-      in  { text = size, xms = xms, xmx = xmx, fixed = fixed }
+      in  { text = size, xms, xmx, fixed }
 
 let exports =
     {- the TB, GB, MB, KB exports are provided as helpers.
@@ -36,7 +36,7 @@ let exports =
     --      in Heap.GB 2
     -}
       { Types = Heap
-      , render = render
+      , render
       , TB = λ(value : Natural) → Heap.TB value
       , GB = λ(value : Natural) → Heap.GB value
       , MB = λ(value : Natural) → Heap.MB value

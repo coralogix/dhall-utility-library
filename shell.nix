@@ -1,29 +1,28 @@
 let
   nixpkgs = import (
     let
-      version = "0c960262d159d3a884dadc3d4e4b131557dad116";
+      version = "eca0d38e22981ba54f3185b1ff16a5e67d483776";
     in builtins.fetchTarball {
       name   = "nixpkgs-${version}";
       url    = "https://github.com/NixOS/nixpkgs/archive/${version}.tar.gz";
-      sha256 = "0d7ms4dxbxvd6f8zrgymr6njvka54fppph1mrjjlcan7y0dhi5rb";
-    }
-  ) {};
+      sha256 = "162ip8l5x5v1wwkdq7xrhqc9155c5i294l7rl18r8skmrncjad12";
+      }
+    ) {};
 
-  dhall-haskell = import (
+  easy-dhall-nix = import (
     let
-      version = "1.31.0";
+      version = "1.33.1";
     in nixpkgs.fetchFromGitHub {
-      owner           = "dhall-lang";
-      repo            = "dhall-haskell";
-      rev             = version;
-      fetchSubmodules = true;
-      sha256          = "030kxbghm9k1r0amrfdlnz9kq2rqijr7pxhbv0bhcb5lrkzajjak";
-    }
-  );
+      owner  = "justinwoo";
+      repo   = "easy-dhall-nix";
+      rev    = "288ee825c326f352a5db194a024bd3e1f2f735b2";
+      sha256 = "12v4ql1nm1famz8r80k1xkkdgj7285vy2vn16iili0qwvz3i98ah";
+      }
+    ) {};
 
 in nixpkgs.mkShell {
   buildInputs = [
-    dhall-haskell.dhall
-    nixpkgs.git
+    easy-dhall-nix.dhall-simple
+    nixpkgs.gitAndTools.lefthook
   ];
 }

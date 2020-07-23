@@ -11,8 +11,8 @@ let Space =
 let render =
       let render
           : ∀(value : Space) → Text
-          =   λ(value : Space)
-            → merge
+          = λ(value : Space) →
+              merge
                 { EB = λ(it : Natural) → "${Natural/show it}Ei"
                 , PB = λ(it : Natural) → "${Natural/show it}Pi"
                 , TB = λ(it : Natural) → "${Natural/show it}Ti"
@@ -52,7 +52,7 @@ let exports =
       , MB = λ(value : Natural) → Space.MB value
       , KB = λ(value : Natural) → Space.KB value
       , Bytes = λ(value : Natural) → Space.Bytes value
-      , render = render
+      , render
       }
 
 in  exports

@@ -8,14 +8,14 @@ let Duration = ../golang/Duration.dhall
 
 in  { helpers.json.optional =
         let generic =
-                λ(input : Type)
-              → λ(render : input → JSON.Type)
-              → λ(it : Optional input)
-              → merge
+              λ(input : Type) →
+              λ(render : input → JSON.Type) →
+              λ(it : Optional input) →
+                merge
                   { Some = λ(value : input) → render value, None = JSON.null }
                   it
 
-        in  { generic = generic
+        in  { generic
             , duration =
                 generic
                   Duration.Type
