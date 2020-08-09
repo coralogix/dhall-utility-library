@@ -17,6 +17,6 @@
       ./jvm/package.dhall sha256:c38453f844ce7897650c79d15d8cf62ace7eadc4310457e23a94caa13819eedc
     ? ./jvm/package.dhall
 , controller =
-      ./controller/package.dhall sha256:af4e0084a475c10ec9b0d26317765832ed6125cba5bd379b30ea7ddd06aab78e
+      ./controller/package.dhall sha256:dd61e966e2c71565535ddc1dc98c0c0497a853b34691b7eaf4c28f994501897e
     ? ./controller/package.dhall
 }
