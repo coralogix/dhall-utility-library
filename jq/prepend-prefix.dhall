@@ -1,6 +1,6 @@
 let Prelude = (../imports.dhall).Prelude
 
-let prependPrefix
+let prepend-prefix
     {- prependPrefix is a helper function that helps drastically simplify wrapping
     -- shell scripts that draw upon the contents of a dhall-to-json call by allowing
     -- Dhall to return the precise objects (and in which specific order) that should
@@ -75,10 +75,10 @@ let prependPrefix
 let tests =
       { non-empty-list =
             assert
-          : prependPrefix "pre" [ "foo", "bar" ] ≡ [ "pre.foo", "pre.bar" ]
+          : prepend-prefix "pre" [ "foo", "bar" ] ≡ [ "pre.foo", "pre.bar" ]
       , empty-list =
           λ(a : Text) →
-            assert : prependPrefix a ([] : List Text) ≡ ([] : List Text)
+            assert : prepend-prefix a ([] : List Text) ≡ ([] : List Text)
       }
 
-in  prependPrefix
+in  prepend-prefix
