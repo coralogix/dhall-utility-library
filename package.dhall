@@ -13,6 +13,9 @@
 , map =
       ./map/package.dhall sha256:e3dd5145bac09f9480664b35dcff007967e993ea5233ba7994404b7aaf62b92b
     ? ./map/package.dhall
+, jq =
+      ./jq/package.dhall sha256:b8a1356b14c4f83f2687254ba8cd6fb70aa0b24010f526e2ad07684d2fde5781
+    ? ./jq/package.dhall
 , jvm =
       ./jvm/package.dhall sha256:c38453f844ce7897650c79d15d8cf62ace7eadc4310457e23a94caa13819eedc
     ? ./jvm/package.dhall
