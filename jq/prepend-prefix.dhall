@@ -25,10 +25,10 @@ let prependPrefix
     --
     -- This would map to the following bash calls:
     --    object=$(dhall-to-json --file ./record.dhall | jq -c)
-    --    jq -r '.foo.one'
-    --    jq -r '.foo.two'
-    --    jq -r '.bar.three'
-    --    jq -r '.bar.four'
+    --    jq -r '.foo.one' <<< "$object"
+    --    jq -r '.foo.two' <<< "$object"
+    --    jq -r '.bar.three' <<< "$object"
+    --    jq -r '.bar.four' <<< "$object"
     --
     -- The easiest and most maintainable way to get this list of jq
     -- filters (particularly when foo is actually ./foo/package.dhall)
