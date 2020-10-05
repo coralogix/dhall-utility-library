@@ -1,7 +1,7 @@
 let Prelude = (../imports.dhall).Prelude
 
 let prepend-prefix
-    {- prependPrefix is a helper function that helps drastically simplify wrapping
+    {- prepend-prefix is a helper function that helps drastically simplify wrapping
     -- shell scripts that draw upon the contents of a dhall-to-json call by allowing
     -- Dhall to return the precise objects (and in which specific order) that should
     -- be extracted by the wrapping shell script.
@@ -54,8 +54,8 @@ let prepend-prefix
     --  in { foo
     --     , bar
     --     , objects =
-    --           prependPrefix "foo" foo.objects
-    --         # prependPrefix "bar" bar.objects
+    --           prepend-prefix "foo" foo.objects
+    --         # prepend-prefix "bar" bar.objects
     --     }
     --
     -- and then simply calling `.objects` to get the list of jq filters.
