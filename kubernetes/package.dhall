@@ -23,4 +23,7 @@
 , Memory =
       ./Memory.dhall sha256:57a3eea389c5d6a940103c0885e3b4f9c3d6a070edd3515fc71115f7f37365b1
     ? ./Memory.dhall
+, Limits =
+      ./Limits.dhall sha256:950c6380ba248cae3e2c62a9586e5023a77b4de013ebfb4049f7f4f3c0226556
+    ? ./Limits.dhall
 }

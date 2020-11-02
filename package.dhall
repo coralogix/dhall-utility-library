@@ -5,7 +5,7 @@
       ./hcl/package.dhall sha256:8097abc6db4887e9599462240e8319eee77372de3f147fca35a3f300677ff5ff
     ? ./hcl/package.dhall
 , kubernetes =
-      ./kubernetes/package.dhall sha256:f67d9c188f1153923b4a3b50b12bef4bd1a0cf7f2032ca79f677a106e8cda606
+      ./kubernetes/package.dhall sha256:81a8925ff2f438cc65ceb42b4031c1eb7934a3aaf71ea84e522247e7832d3bb2
     ? ./kubernetes/package.dhall
 , log =
       ./log/package.dhall sha256:4602b9f70fdcd8de5169cffbe11870a851b69d56b1c4a4525b2c8df289ef8db5
